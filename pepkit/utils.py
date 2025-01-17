@@ -10,6 +10,10 @@ def filter(input_file, canonical_output, log_file):
         input_file (str): Path to the input combined CSV file.
         canonical_output (str): Path to save the canonical sequences CSV.
         log_file (str): Path to save the log file for non-canonical sequences.
+    
+    Returns:
+        csv_file: list of peptides with canonical amino acids and valid length
+        log: Sequences with non-canonical amino acids and invalid length 
     """
     # Define the set of canonical amino acids
     canonical_amino_acids = set("ACDEFGHIKLMNPQRSTVWY")
