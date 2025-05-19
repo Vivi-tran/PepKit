@@ -1,60 +1,110 @@
-import pandas as pd
+import os
+import sys
 import logging
+from rdkit import RDLogger
+from contextlib import contextmanager
+from typing import Union, Optional
 
 
-def filter(input_file, canonical_output, log_file):
+def setup_logging(
+    level: Union[int, str] = logging.INFO,
+    log_to_file: bool = False,
+    filename: Optional[str] = None,
+    fmt: str = "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    datefmt: str = "%Y-%m-%d %H:%M:%S",
+    logger_name: Optional[str] = None,
+    file_mode: str = "a",
+) -> logging.Logger:
     """
-    Preprocesses a combined CSV file to filter sequences with non-canonical amino acids and invalid lengths.
+    Configure and return a logger with console and optional file handlers.
 
-    Args:
-        input_file (str): Path to the input combined CSV file.
-        canonical_output (str): Path to save the canonical sequences CSV.
-        log_file (str): Path to save the log file for non-canonical sequences.
+    Parameters:
+        level: Logging level (int or str), e.g. logging.DEBUG or "DEBUG".
+        log_to_file: Whether to also log to a file.
+        filename: Path to the log file (required if log_to_file=True).
+        fmt: Log message format string.
+        datefmt: Date format string for timestamps.
+        logger_name: Name of the logger to configure; configures root logger if None.
+        file_mode: Mode for the file handler: 'a' to append, 'w' to overwrite.
 
     Returns:
-        csv_file: list of peptides with canonical amino acids and valid length
-        log: Sequences with non-canonical amino acids and invalid length
+        Configured logging.Logger instance.
     """
-    # Define the set of canonical amino acids
-    canonical_amino_acids = set("ACDEFGHIKLMNPQRSTVWY")
+    # Convert string level to numeric
+    if isinstance(level, str):
+        level = logging.getLevelName(level.upper())
 
-    # Initialize logging
-    logging.basicConfig(
-        filename=log_file, level=logging.DEBUG, format="%(asctime)s - %(message)s"
-    )
+    # Get or create specified logger
+    logger = logging.getLogger(logger_name)
+    logger.setLevel(level)
 
-    # Read input CSV file
-    df = pd.read_csv(input_file)
-    logging.info(f"Loaded {len(df)} records from input file.")
+    # Formatter for all handlers
+    formatter = logging.Formatter(fmt=fmt, datefmt=datefmt)
 
-    non_canonical_log = []
-    canonical_rows = []
+    # Remove existing handlers
+    for handler in list(logger.handlers):
+        logger.removeHandler(handler)
 
-    # Process each sequence in the dataframe
-    for index, row in df.iterrows():
-        pep_seq = row["pep_seq"]
+    # Console handler
+    ch = logging.StreamHandler(sys.stdout)
+    ch.setLevel(level)
+    ch.setFormatter(formatter)
+    logger.addHandler(ch)
 
-        # Check if the sequence contains non-canonical amino acids or is of invalid length
-        if (
-            any(aa not in canonical_amino_acids for aa in pep_seq)
-            or len(pep_seq) < 2
-            or len(pep_seq) > 30
-        ):
-            non_canonical_log.append(f"{row['id']}: {pep_seq}")
-            logging.debug(f"Non-canonical sequence: {row['id']} ({pep_seq})")
-        else:
-            canonical_rows.append(row)
+    # File handler (optional)
+    if log_to_file:
+        if not filename:
+            raise ValueError("`filename` must be provided when `log_to_file=True`")
+        # Create file handler with specified mode ('a' to append, 'w' to overwrite)
+        fh = logging.FileHandler(filename, mode=file_mode)
+        fh.setLevel(level)
+        fh.setFormatter(formatter)
+        logger.addHandler(fh)
 
-    # Save canonical sequences to a new CSV file
-    canonical_df = pd.DataFrame(canonical_rows)
-    canonical_df.to_csv(canonical_output, index=False)
-    logging.info(
-        f"Canonical sequences saved to '{canonical_output}' with {len(canonical_rows)} entries."
-    )
+    return logger
 
-    # Write non-canonical sequences to the log file
-    with open(log_file, "w") as log:
-        log.write("\n".join(non_canonical_log))
-    logging.info(
-        f"Non-canonical sequences logged in '{log_file}' with {len(non_canonical_log)} entries."
-    )
+
+def disable_rdkit_warnings(
+    suppress_cpp: bool = True, level: int = RDLogger.CRITICAL
+) -> None:
+    """
+    Silences RDKit Python logging and optional C++ warnings.
+
+    Parameters:
+    - suppress_cpp (bool): If True, redirects C/C++ stderr output to os.devnull,
+      suppressing any low-level RDKit messages.
+    - level (int): RDKit logging level to set (e.g., RDLogger.CRITICAL to suppress all).
+
+    Usage:
+        disable_rdkit_warnings()
+        # import and use RDKit without warnings
+    """
+    # Disable RDKit Python logs (from rdApp.*)
+    RDLogger.DisableLog("rdApp.*")
+    rd_logger = RDLogger.logger()
+    rd_logger.setLevel(level)
+
+    if suppress_cpp:
+        # Redirect C++ stderr messages (e.g., from RDKit's C++ core) to null
+        sys.stderr = open(os.devnull, "w")
+
+
+@contextmanager
+def rdkit_warning_suppression(suppress_cpp: bool = True):
+    """
+    Context manager to temporarily silence RDKit warnings (Python and C++).
+
+    Example:
+        with rdkit_warning_suppression():
+            mol = Chem.MolFromSmiles('invalid')  # no warnings shown
+    """
+    # Save original stderr
+    orig_err = sys.stderr
+    try:
+        disable_rdkit_warnings(suppress_cpp=suppress_cpp)
+        yield
+    finally:
+        # Restore stderr
+        if suppress_cpp:
+            sys.stderr.close()
+        sys.stderr = orig_err
