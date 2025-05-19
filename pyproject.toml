@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pepkit"
+version = "0.0.1"
+authors = [
+    {name="Ngoc-Vi Nguyen TRAN", email="nguyen-ngoc-vi.tran.6279@student.uu.se"}
+]
+
+description = "Toolkit for peptide modelling"
+readme = "README.md"
+long-description = {file = "CHANGELOG.md"}
+long-description-content-type = "text/markdown"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "scikit-learn>=1.4.0",
+    "pandas>=2.2.0",
+    "rdkit>=2025.3.2",
+    "seaborn>=0.13.2",
+    "numpy>=2.2.0",
+    "umap-learn>=0.1.1",
+    "peptides>=0.3.4",
+    "joblib>=1.4.2",
+    "openbabel-wheel>=1.4.2",
+]
+
+[project.optional-dependencies]
+all = ["MDAnalysis>=2.9.0", "prolif>=2.0.3"]
+
+
+[project.urls]
+homepage = "https://github.com/Vivi-tran/PepKit"
+source = "https://github.com/Vivi-tran/PepKit"
+issues = "https://github.com/Vivi-tran/PepKit/issues"
+documentation = "https://Vivi-tran.github.io/PepKit/"
