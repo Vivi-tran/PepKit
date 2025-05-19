@@ -1,0 +1,204 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Metrics &mdash; pepkit  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pepkit.dock.rosetta" href="dock.html" />
+    <link rel="prev" title="pepkit.chem" href="chem.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            pepkit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chem.html">Chemical Modeling</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Metrics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#regression">Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#classification">Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-process">Data Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-and-api-reference">Testing and API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dock.html">Dock</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pepkit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Metrics</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/metrics.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="metrics">
+<h1>Metrics<a class="headerlink" href="#metrics" title="Link to this heading"></a></h1>
+<p>The <cite>pepkit.metrics</cite> package provides a standard interface for evaluating regression and classification models on peptide datasets.</p>
+<section id="regression">
+<h2>Regression<a class="headerlink" href="#regression" title="Link to this heading"></a></h2>
+<p><strong>Regression metrics</strong> for tasks such as continuous affinity prediction or quantitative property estimation. This submodule includes:</p>
+<ul class="simple">
+<li><p><cite>pearson_corr</cite>: Pearson correlation coefficient between ground truth and predicted values.</p></li>
+<li><p><cite>spearman_corr</cite>: Spearman rank correlation coefficient.</p></li>
+<li><p><cite>rmse</cite>: Root mean squared error.</p></li>
+<li><p><cite>mae</cite>: Mean absolute error.</p></li>
+<li><p><cite>r2</cite>: Coefficient of determination (R² score).</p></li>
+</ul>
+<p><em>Example:</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pepkit.metrics</span> <span class="kn">import</span> <span class="n">_regression</span> <span class="k">as</span> <span class="n">reg</span>
+
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">5.4</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mf">4.8</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">])</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">7.467</span><span class="p">,</span> <span class="mf">7.303</span><span class="p">,</span> <span class="mf">7.369</span><span class="p">,</span> <span class="mf">7.633</span><span class="p">,</span> <span class="mf">7.52</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pearson:&quot;</span><span class="p">,</span> <span class="n">reg</span><span class="o">.</span><span class="n">pearson_corr</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Spearman:&quot;</span><span class="p">,</span> <span class="n">reg</span><span class="o">.</span><span class="n">spearman_corr</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMSE:&quot;</span><span class="p">,</span> <span class="n">reg</span><span class="o">.</span><span class="n">rmse</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MAE:&quot;</span><span class="p">,</span> <span class="n">reg</span><span class="o">.</span><span class="n">mae</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;R2:&quot;</span><span class="p">,</span> <span class="n">reg</span><span class="o">.</span><span class="n">r2</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="classification">
+<h2>Classification<a class="headerlink" href="#classification" title="Link to this heading"></a></h2>
+<p><strong>Classification metrics</strong> for evaluating binary/probabilistic peptide models, e.g., binder vs. non-binder classification. This submodule includes:</p>
+<ul class="simple">
+<li><p><cite>auc_score</cite>: Area under the ROC curve (AUC).</p></li>
+<li><p><cite>average_precision</cite>: Area under the precision-recall curve (AP).</p></li>
+<li><p><cite>enrichment_factor</cite>: Early enrichment metric (EF) for virtual screening, with customizable cutoffs.</p></li>
+</ul>
+<p><em>Example:</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pepkit.metrics</span> <span class="kn">import</span> <span class="n">_classification</span> <span class="k">as</span> <span class="n">clf</span>
+
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AUC:&quot;</span><span class="p">,</span> <span class="n">clf</span><span class="o">.</span><span class="n">auc_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average precision:&quot;</span><span class="p">,</span> <span class="n">clf</span><span class="o">.</span><span class="n">average_precision</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Enrichment factor @ 20%:&quot;</span><span class="p">,</span> <span class="n">clf</span><span class="o">.</span><span class="n">enrichment_factor</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">top_percent</span><span class="o">=</span><span class="mi">20</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="data-process">
+<h2>Data Process<a class="headerlink" href="#data-process" title="Link to this heading"></a></h2>
+<p><strong>Utility functions</strong> for batch metric computation and DataFrame workflows. Useful for applying all relevant metrics in a single call and for integration in ML pipelines.</p>
+<ul class="simple">
+<li><p><cite>compute_regression_metrics</cite>: Returns a dictionary of regression metrics (PCC, SCC, RMSE, MAE, R2).</p></li>
+<li><p><cite>compute_classification_metrics</cite>: Returns a dictionary of classification metrics (AUC, AP, and EF at several cutoffs).</p></li>
+<li><p><cite>compute_metrics_from_dataframe</cite>: Computes metrics from DataFrame columns for either regression or classification tasks.</p></li>
+</ul>
+<p><em>Example:</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pepkit.metrics._base</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">compute_regression_metrics</span><span class="p">,</span> <span class="n">compute_classification_metrics</span><span class="p">,</span> <span class="n">compute_metrics_from_dataframe</span>
+<span class="p">)</span>
+
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">5.4</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mf">4.8</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">])</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">7.467</span><span class="p">,</span> <span class="mf">7.303</span><span class="p">,</span> <span class="mf">7.369</span><span class="p">,</span> <span class="mf">7.633</span><span class="p">,</span> <span class="mf">7.52</span><span class="p">])</span>
+<span class="c1"># Compute all regression metrics</span>
+<span class="n">reg_metrics</span> <span class="o">=</span> <span class="n">compute_regression_metrics</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">reg_metrics</span><span class="p">)</span>
+
+<span class="c1"># Classification example</span>
+<span class="n">y_true_clf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">y_pred_proba</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">])</span>
+<span class="n">clf_metrics</span> <span class="o">=</span> <span class="n">compute_classification_metrics</span><span class="p">(</span><span class="n">y_true_clf</span><span class="p">,</span> <span class="n">y_pred_proba</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">clf_metrics</span><span class="p">)</span>
+
+<span class="c1"># DataFrame usage</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;y_true&quot;</span><span class="p">:</span> <span class="n">y_true</span><span class="p">,</span> <span class="s2">&quot;y_pred&quot;</span><span class="p">:</span> <span class="n">y_pred</span><span class="p">})</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">compute_metrics_from_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">ground_truth_key</span><span class="o">=</span><span class="s2">&quot;y_true&quot;</span><span class="p">,</span> <span class="n">pred_key</span><span class="o">=</span><span class="s2">&quot;y_pred&quot;</span><span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="s2">&quot;regression&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="testing-and-api-reference">
+<h2>Testing and API Reference<a class="headerlink" href="#testing-and-api-reference" title="Link to this heading"></a></h2>
+<p>See <code class="docutils literal notranslate"><span class="pre">test/metrics/</span></code> for complete unittests and example-based validation.</p>
+<p>Full function and class documentation: see <a class="reference external" href="https://Vivi-tran.github.io/PepKit/api.html">API Reference</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="chem.html" class="btn btn-neutral float-left" title="pepkit.chem" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dock.html" class="btn btn-neutral float-right" title="pepkit.dock.rosetta" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Vivi-Tran.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
