@@ -1,0 +1,1248 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference &mdash; pepkit  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Changelog" href="changelog.html" />
+    <link rel="prev" title="Dock" href="dock.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            pepkit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chem.html">Chemical Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dock.html">Dock</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#chem-module">Chem Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#parser-pepkit-chem-parser">Parser (<cite>pepkit.chem._parser</cite>)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.chem._parser.fasta_to_smiles"><code class="docutils literal notranslate"><span class="pre">fasta_to_smiles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.chem._parser.kd_to_pkd"><code class="docutils literal notranslate"><span class="pre">kd_to_pkd()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.chem._parser.smiles_to_fasta"><code class="docutils literal notranslate"><span class="pre">smiles_to_fasta()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#property-pepkit-chem-property">Property (<cite>pepkit.chem._property</cite>)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.chem._property.compute_molecular_weight"><code class="docutils literal notranslate"><span class="pre">compute_molecular_weight()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.chem._property.compute_net_charge"><code class="docutils literal notranslate"><span class="pre">compute_net_charge()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.chem._property.compute_peptide_properties"><code class="docutils literal notranslate"><span class="pre">compute_peptide_properties()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#descriptor-pepkit-chem-descriptor">Descriptor (<cite>pepkit.chem.descriptor</cite>)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.chem.descriptor.Descriptor"><code class="docutils literal notranslate"><span class="pre">Descriptor</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#standardize-pepkit-chem-standardize">Standardize (<cite>pepkit.chem.standardize</cite>)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.chem.standardize.Standardizer"><code class="docutils literal notranslate"><span class="pre">Standardizer</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#metrics-module">Metrics Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#regression-metrics-pepkit-metrics-regression">Regression Metrics (<cite>pepkit.metrics._regression</cite>)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.metrics._regression.mae"><code class="docutils literal notranslate"><span class="pre">mae()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.metrics._regression.pearson_corr"><code class="docutils literal notranslate"><span class="pre">pearson_corr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.metrics._regression.r2"><code class="docutils literal notranslate"><span class="pre">r2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.metrics._regression.rmse"><code class="docutils literal notranslate"><span class="pre">rmse()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.metrics._regression.spearman_corr"><code class="docutils literal notranslate"><span class="pre">spearman_corr()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#classification-metrics-pepkit-metrics-classification">Classification Metrics (<cite>pepkit.metrics._classification</cite>)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.metrics._classification.auc_score"><code class="docutils literal notranslate"><span class="pre">auc_score()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.metrics._classification.average_precision"><code class="docutils literal notranslate"><span class="pre">average_precision()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.metrics._classification.enrichment_factor"><code class="docutils literal notranslate"><span class="pre">enrichment_factor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#base-metrics-pepkit-metrics-base">Base Metrics (<cite>pepkit.metrics._base</cite>)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.metrics._base.compute_classification_metrics"><code class="docutils literal notranslate"><span class="pre">compute_classification_metrics()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.metrics._base.compute_metrics_from_dataframe"><code class="docutils literal notranslate"><span class="pre">compute_metrics_from_dataframe()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.metrics._base.compute_regression_metrics"><code class="docutils literal notranslate"><span class="pre">compute_regression_metrics()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#common-metrics-pepkit-metrics-common">Common Metrics (<cite>pepkit.metrics._common</cite>)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.metrics._common.normalize_minmax"><code class="docutils literal notranslate"><span class="pre">normalize_minmax()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dock-module">Dock Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rosetta-refinement-dock-pepkit-dock-rosetta-refinement-dock">Rosetta Refinement Dock (<cite>pepkit.dock.rosetta.refinement_dock</cite>)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.dock.rosetta.refinement_dock.refinement_dock"><code class="docutils literal notranslate"><span class="pre">refinement_dock()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.dock.rosetta.refinement_dock.refinement_multiple_dock"><code class="docutils literal notranslate"><span class="pre">refinement_multiple_dock()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rosetta-score-pepkit-dock-rosetta-score">Rosetta Score (<cite>pepkit.dock.rosetta.score</cite>)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.dock.rosetta.score.extract_score"><code class="docutils literal notranslate"><span class="pre">extract_score()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.dock.rosetta.score.get_optimal_clx"><code class="docutils literal notranslate"><span class="pre">get_optimal_clx()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.dock.rosetta.score.read_and_convert"><code class="docutils literal notranslate"><span class="pre">read_and_convert()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#md-module">MD Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#construction-of-interaction-fingerprint-and-frequency">Construction of interaction fingerprint and frequency</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.md.interaction.compute_interaction_fingerprint"><code class="docutils literal notranslate"><span class="pre">compute_interaction_fingerprint()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.md.interaction.plot_interaction_fingerprint"><code class="docutils literal notranslate"><span class="pre">plot_interaction_fingerprint()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.md.interaction.protein_interaction_frequency"><code class="docutils literal notranslate"><span class="pre">protein_interaction_frequency()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pepkit.md.stable">Stability evaluation of trajectories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.md.stable.compute_rmsd"><code class="docutils literal notranslate"><span class="pre">compute_rmsd()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.md.stable.compute_rmsf"><code class="docutils literal notranslate"><span class="pre">compute_rmsf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.md.stable.plot_rmsd"><code class="docutils literal notranslate"><span class="pre">plot_rmsd()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.md.stable.plot_rmsf"><code class="docutils literal notranslate"><span class="pre">plot_rmsf()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#io-module">IO Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#file-io-pepkit-io-files">File IO (<cite>pepkit.io.files</cite>)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.io.files.atomic_write"><code class="docutils literal notranslate"><span class="pre">atomic_write()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.io.files.read_csv"><code class="docutils literal notranslate"><span class="pre">read_csv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.io.files.read_json"><code class="docutils literal notranslate"><span class="pre">read_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.io.files.read_text"><code class="docutils literal notranslate"><span class="pre">read_text()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.io.files.write_csv"><code class="docutils literal notranslate"><span class="pre">write_csv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.io.files.write_json"><code class="docutils literal notranslate"><span class="pre">write_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.io.files.write_text"><code class="docutils literal notranslate"><span class="pre">write_text()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.io.files.write_tsv"><code class="docutils literal notranslate"><span class="pre">write_tsv()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#logging-pepkit-io-logging">Logging (<cite>pepkit.io.logging</cite>)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.io.logging.get_logger"><code class="docutils literal notranslate"><span class="pre">get_logger()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.io.logging.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pepkit.io.logging.temporary_log_level"><code class="docutils literal notranslate"><span class="pre">temporary_log_level()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pepkit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading"></a></h1>
+<p>PepKit is organized into several core modules, each providing specialized functionality for peptide informatics, modeling, docking, and data handling. Browse below for detailed API documentation.</p>
+<section id="chem-module">
+<h2>Chem Module<a class="headerlink" href="#chem-module" title="Link to this heading"></a></h2>
+<section id="parser-pepkit-chem-parser">
+<h3>Parser (<cite>pepkit.chem._parser</cite>)<a class="headerlink" href="#parser-pepkit-chem-parser" title="Link to this heading"></a></h3>
+<p>Tools for parsing peptide representations (FASTA/SMILES), standardizing sequences, and filtering non-canonical FASTA records.</p>
+<dl class="py function" id="module-pepkit.chem._parser">
+<dt class="sig sig-object py" id="pepkit.chem._parser.fasta_to_smiles">
+<span class="sig-prename descclassname"><span class="pre">pepkit.chem._parser.</span></span><span class="sig-name descname"><span class="pre">fasta_to_smiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fasta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pepkit.chem._parser.fasta_to_smiles" title="Link to this definition"></a></dt>
+<dd><p>Convert a peptide/protein FASTA sequence into a canonical SMILES string using RDKit.</p>
+<p>This function uses RDKit’s <cite>Chem.MolFromFASTA</cite> to parse the FASTA string
+into a molecule object, then returns its canonical SMILES representation
+using <cite>Chem.MolToSmiles</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fasta</strong> (<em>str</em>) – FASTA-format amino acid sequence (1-letter codes, no header required).</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the sequence cannot be parsed as a peptide/protein.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Canonical SMILES string corresponding to the input peptide.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.chem._parser.kd_to_pkd">
+<span class="sig-prename descclassname"><span class="pre">pepkit.chem._parser.</span></span><span class="sig-name descname"><span class="pre">kd_to_pkd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pepkit.chem._parser.kd_to_pkd" title="Link to this definition"></a></dt>
+<dd><p>Convert a dissociation constant (K<sub>d</sub>) in molar units to pK<sub>d</sub>.</p>
+<p>The conversion is performed as: pK<sub>d</sub>= -log10(K<sub>d</sub>[M] / 1e-9)
+(i.e., convert K<sub>d</sub>from M to nM before taking log).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kd</strong> (<em>float</em><em> or </em><em>array-like</em>) – Dissociation constant (K_d) in molar units (M).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The corresponding pK_d value(s).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float or numpy.ndarray</p>
+</dd>
+</dl>
+<section id="example">
+<h4>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h4>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">kd_to_pkd</span><span class="p">(</span><span class="mf">1e-9</span><span class="p">)</span>
+<span class="go">9.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kd_to_pkd</span><span class="p">(</span><span class="mf">50e-9</span><span class="p">)</span>
+<span class="go">7.30103...</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.chem._parser.smiles_to_fasta">
+<span class="sig-prename descclassname"><span class="pre">pepkit.chem._parser.</span></span><span class="sig-name descname"><span class="pre">smiles_to_fasta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">smiles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pepkit.chem._parser.smiles_to_fasta" title="Link to this definition"></a></dt>
+<dd><p>Convert a SMILES string for a peptide to a FASTA record using RDKit.</p>
+<p>This function converts the given SMILES to an RDKit molecule,
+retrieves the amino acid sequence with <cite>MolToSequence</cite>, and
+emits a FASTA-formatted string. An optional header line (e.g. ‘&gt;peptide1’)
+can be included.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>smiles</strong> (<em>str</em>) – Canonical SMILES string for a peptide or protein.</p></li>
+<li><p><strong>header</strong> (<em>str</em><em>, </em><em>optional</em>) – Optional header for the FASTA record (without ‘&gt;’).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If SMILES cannot be parsed or not a peptide.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>FASTA record string (with optional header).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="property-pepkit-chem-property">
+<h3>Property (<cite>pepkit.chem._property</cite>)<a class="headerlink" href="#property-pepkit-chem-property" title="Link to this heading"></a></h3>
+<p>Functions for calculating molecular and sequence-based properties for peptides.</p>
+<dl class="py function" id="module-pepkit.chem._property">
+<dt class="sig sig-object py" id="pepkit.chem._property.compute_molecular_weight">
+<span class="sig-prename descclassname"><span class="pre">pepkit.chem._property.</span></span><span class="sig-name descname"><span class="pre">compute_molecular_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#pepkit.chem._property.compute_molecular_weight" title="Link to this definition"></a></dt>
+<dd><p>Calculate the average molecular weight of a peptide.</p>
+<p>Converts the input (FASTA, sequence, or SMILES) to a molecule,
+then calculates its molecular weight using RDKit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_str</strong> (<em>str</em>) – FASTA record, peptide sequence, or SMILES string.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If input cannot be parsed to a molecule.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Molecular weight in Daltons.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.chem._property.compute_net_charge">
+<span class="sig-prename descclassname"><span class="pre">pepkit.chem._property.</span></span><span class="sig-name descname"><span class="pre">compute_net_charge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pH</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7.4</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#pepkit.chem._property.compute_net_charge" title="Link to this definition"></a></dt>
+<dd><p>Estimate the net formal charge of a peptide at a given pH.</p>
+<p>Converts the input to SMILES, re-protonates using the specified pH,
+and sums the formal atomic charges in the resulting molecule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_str</strong> (<em>str</em>) – Input as FASTA, sequence, or SMILES.</p></li>
+<li><p><strong>pH</strong> (<em>float</em>) – pH value for charge calculation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If charged SMILES cannot be parsed.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Net formal charge (sum of atomic charges).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.chem._property.compute_peptide_properties">
+<span class="sig-prename descclassname"><span class="pre">pepkit.chem._property.</span></span><span class="sig-name descname"><span class="pre">compute_peptide_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pH</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7.4</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pepkit.chem._property.compute_peptide_properties" title="Link to this definition"></a></dt>
+<dd><p>Compute basic properties of a peptide: molecular weight, net charge,
+and isoelectric point (pI).</p>
+<ul class="simple">
+<li><p>Molecular weight is computed via RDKit’s Descriptors.MolWt.</p></li>
+<li><p>Net charge is estimated at the specified pH.</p></li>
+<li><p>Isoelectric point (pI) is approximated by numerically finding</p></li>
+</ul>
+<p>the pH at which the net charge is zero.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_str</strong> (<em>str</em>) – Peptide input (FASTA, sequence, or SMILES).</p></li>
+<li><p><strong>pH</strong> (<em>float</em>) – pH value for net charge calculation and initial guess for pI.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with ‘molecular_weight’, ‘net_charge’, and ‘isoelectric_point’.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="descriptor-pepkit-chem-descriptor">
+<h3>Descriptor (<cite>pepkit.chem.descriptor</cite>)<a class="headerlink" href="#descriptor-pepkit-chem-descriptor" title="Link to this heading"></a></h3>
+<p>Calculation of molecular descriptors and physicochemical properties.</p>
+<dl class="py class" id="module-pepkit.chem.descriptor">
+<dt class="sig sig-object py" id="pepkit.chem.descriptor.Descriptor">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pepkit.chem.descriptor.</span></span><span class="sig-name descname"><span class="pre">Descriptor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'peptides'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fasta_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'peptide_sequence'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'id'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smiles_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'smiles'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pepkit.chem.descriptor.Descriptor" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Compute molecular or peptide descriptors for a collection of records.</p>
+<p>This class provides descriptor calculation for peptides or small molecules,
+supporting two engines:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>‘peptides’: Uses the <cite>peptides</cite> Python package for peptide descriptors.</p></li>
+<li><p>‘rdkit’: Uses RDKit for general molecular descriptors from SMILES.</p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>engine</strong> – Descriptor engine (‘peptides’ for peptide descriptors,</p>
+</dd>
+</dl>
+<p>‘rdkit’ for molecular descriptors).
+:type engine: str
+:param fasta_key: Key for the peptide sequence in input records or DataFrame.
+:type fasta_key: str
+:param id_key: Key for unique record identifiers in input.
+:type id_key: str
+:param smiles_key: Key for SMILES string in input records (used only by ‘rdkit’).
+:type smiles_key: str</p>
+<section id="id1">
+<h4>Example<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">descriptor</span> <span class="o">=</span> <span class="n">Descriptor</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="s1">&#39;peptides&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">records</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;peptide_sequence&#39;</span><span class="p">:</span> <span class="s1">&#39;ACDE&#39;</span><span class="p">}]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_out</span> <span class="o">=</span> <span class="n">descriptor</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">descriptor</span> <span class="o">=</span> <span class="n">Descriptor</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="s1">&#39;rdkit&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">records</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;smiles&#39;</span><span class="p">:</span> <span class="s1">&#39;CC(=O)O&#39;</span><span class="p">}]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_out</span> <span class="o">=</span> <span class="n">descriptor</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pepkit.chem.descriptor.Descriptor.SUPPORTED_ENGINES">
+<span class="sig-name descname"><span class="pre">SUPPORTED_ENGINES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'peptides',</span> <span class="pre">'rdkit'}</span></em><a class="headerlink" href="#pepkit.chem.descriptor.Descriptor.SUPPORTED_ENGINES" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pepkit.chem.descriptor.Descriptor.calculate">
+<span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pepkit.chem.descriptor.Descriptor.calculate" title="Link to this definition"></a></dt>
+<dd><p>Compute descriptors in parallel for all records in <cite>data</cite>.</p>
+<p>The output type matches the input type: if you provide a DataFrame,
+you get a DataFrame; if you provide a list of dicts, you get a list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> – Input data (pandas DataFrame or list of dicts), with fields</p>
+</dd>
+</dl>
+<p>for sequence/SMILES and ID.
+:type data: Union[pd.DataFrame, List[Dict[str, Any]]]
+:param n_jobs: Number of parallel jobs (joblib, -1 uses all available cores).
+:type n_jobs: int
+:param verbose: Verbosity for joblib parallel execution.
+:type verbose: int
+:raises TypeError: If input is not a DataFrame or list of dicts.
+:raises KeyError: If required keys are missing in input records.
+:raises ValueError: If SMILES cannot be parsed by RDKit.
+:return: Descriptor results, in the same format as the input.
+:rtype: Union[pd.DataFrame, List[Dict[str, Any]]]</p>
+<section id="id2">
+<h5>Example<a class="headerlink" href="#id2" title="Link to this heading"></a></h5>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">descriptor</span> <span class="o">=</span> <span class="n">Descriptor</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="s1">&#39;peptides&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;peptide_sequence&#39;</span><span class="p">:</span> <span class="s1">&#39;ACDE&#39;</span><span class="p">}])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">descriptor</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+<section id="standardize-pepkit-chem-standardize">
+<h3>Standardize (<cite>pepkit.chem.standardize</cite>)<a class="headerlink" href="#standardize-pepkit-chem-standardize" title="Link to this heading"></a></h3>
+<p>Utilities for standardizing peptide sequences and molecular representations.</p>
+<dl class="py class" id="module-pepkit.chem.standardize">
+<dt class="sig sig-object py" id="pepkit.chem.standardize.Standardizer">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pepkit.chem.standardize.</span></span><span class="sig-name descname"><span class="pre">Standardizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">remove_non_canonical</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">charge_by_pH</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pH</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Logger</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pepkit.chem.standardize.Standardizer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Utility for processing peptide/protein sequences:
+- Validate canonical sequences
+- Convert FASTA to SMILES
+- Add pH-dependent charges
+- Batch and dict/DataFrame-based processing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>remove_non_canonical</strong> (<em>bool</em>) – If True, filter out non-canonical sequences</p></li>
+<li><p><strong>charge_by_pH</strong> (<em>bool</em>) – If True, adjust SMILES charges at given pH</p></li>
+<li><p><strong>pH</strong> (<em>float</em>) – pH value for charge adjustment</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – Logger instance for status messages</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pepkit.chem.standardize.Standardizer.add_charge_by_pH">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_charge_by_pH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">smi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pH</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7.4</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pepkit.chem.standardize.Standardizer.add_charge_by_pH" title="Link to this definition"></a></dt>
+<dd><p>Adjust the protonation state of a SMILES string for a given pH.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>smi</strong> (<em>str</em>) – Input SMILES string</p></li>
+<li><p><strong>pH</strong> (<em>float</em>) – Target pH for protonation correction</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>pH-corrected SMILES string</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pepkit.chem.standardize.Standardizer.data_process">
+<span class="sig-name descname"><span class="pre">data_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fasta_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'fasta'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pepkit.chem.standardize.Standardizer.data_process" title="Link to this definition"></a></dt>
+<dd><p>Process FASTA data in a DataFrame or list of dicts, adding SMILES output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>Union</em><em>[</em><em>pd.DataFrame</em><em>, </em><em>List</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em><em>]</em>) – Input pandas DataFrame or list of dicts with FASTA sequences</p></li>
+<li><p><strong>fasta_key</strong> (<em>str</em>) – Column/key for FASTA sequences in the data</p></li>
+<li><p><strong>n_jobs</strong> (<em>int</em>) – Number of parallel jobs for charge adjustment</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame or list of dicts with ‘smiles’ column/field</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Union[pd.DataFrame, List[Dict[str, Any]]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pepkit.chem.standardize.Standardizer.dict_process">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dict_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fasta_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_non_canonical</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">charge_by_pH</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pH</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7.4</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pepkit.chem.standardize.Standardizer.dict_process" title="Link to this definition"></a></dt>
+<dd><p>Process a list of dictionaries, converting FASTA sequences to SMILES.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>List</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – List of records (dicts) containing FASTA sequences</p></li>
+<li><p><strong>fasta_key</strong> (<em>str</em>) – Key in each dict for the FASTA sequence</p></li>
+<li><p><strong>remove_non_canonical</strong> (<em>bool</em>) – Remove non-canonical sequences if True</p></li>
+<li><p><strong>charge_by_pH</strong> (<em>bool</em>) – Adjust SMILES at specified pH if True</p></li>
+<li><p><strong>pH</strong> (<em>float</em>) – pH value for charge adjustment</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New list of dicts with ‘smiles’ field added</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Dict[str, Any]]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>KeyError</strong> – If fasta_key is missing in any record</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pepkit.chem.standardize.Standardizer.is_canonical_sequence">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_canonical_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pepkit.chem.standardize.Standardizer.is_canonical_sequence" title="Link to this definition"></a></dt>
+<dd><p>Check if a sequence contains only canonical amino acids.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sequence</strong> (<em>str</em>) – FASTA-style one-letter amino acid sequence</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if all residues are canonical</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – If sequence is not a string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pepkit.chem.standardize.Standardizer.process_fasta">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">process_fasta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fasta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_non_canonical</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">charge_by_pH</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pH</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7.4</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#pepkit.chem.standardize.Standardizer.process_fasta" title="Link to this definition"></a></dt>
+<dd><p>Convert a FASTA sequence to a SMILES string, with optional filtering and charging.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fasta</strong> (<em>str</em>) – FASTA-style amino acid sequence</p></li>
+<li><p><strong>remove_non_canonical</strong> – If True, skip sequences containing</p></li>
+</ul>
+</dd>
+</dl>
+<p>non-canonical residues
+:type remove_non_canonical: bool
+:param charge_by_pH: If True, adjust SMILES at specified pH
+:type charge_by_pH: bool
+:param pH: pH for protonation adjustment
+:type pH: float
+:return: Generated SMILES or None if filtered out
+:rtype: Optional[str]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pepkit.chem.standardize.Standardizer.process_list_fasta">
+<span class="sig-name descname"><span class="pre">process_list_fasta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequences</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pepkit.chem.standardize.Standardizer.process_list_fasta" title="Link to this definition"></a></dt>
+<dd><p>Process a list of FASTA sequences in parallel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sequences</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – List of FASTA sequences</p></li>
+<li><p><strong>n_jobs</strong> (<em>int</em>) – Number of parallel jobs for processing</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of resulting SMILES or None values</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Optional[str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="metrics-module">
+<h2>Metrics Module<a class="headerlink" href="#metrics-module" title="Link to this heading"></a></h2>
+<section id="regression-metrics-pepkit-metrics-regression">
+<h3>Regression Metrics (<cite>pepkit.metrics._regression</cite>)<a class="headerlink" href="#regression-metrics-pepkit-metrics-regression" title="Link to this heading"></a></h3>
+<p>Metrics for regression tasks such as binding affinity prediction.</p>
+<dl class="py function" id="module-pepkit.metrics._regression">
+<dt class="sig sig-object py" id="pepkit.metrics._regression.mae">
+<span class="sig-prename descclassname"><span class="pre">pepkit.metrics._regression.</span></span><span class="sig-name descname"><span class="pre">mae</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pepkit.metrics._regression.mae" title="Link to this definition"></a></dt>
+<dd><p>Mean Absolute Error (MAE).
+:param y_true: Ground-truth values.
+:param y_pred: Predicted values.
+:param normalize: Whether to min-max normalize y_true/y_pred to [0, 1].
+:return: MAE value.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.metrics._regression.pearson_corr">
+<span class="sig-prename descclassname"><span class="pre">pepkit.metrics._regression.</span></span><span class="sig-name descname"><span class="pre">pearson_corr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pepkit.metrics._regression.pearson_corr" title="Link to this definition"></a></dt>
+<dd><p>Pearson correlation coefficient (PCC).
+:param y_true: Ground-truth values.
+:param y_pred: Predicted values.
+:param normalize: Whether to min-max normalize y_true/y_pred to [0, 1].
+:return: PCC value.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.metrics._regression.r2">
+<span class="sig-prename descclassname"><span class="pre">pepkit.metrics._regression.</span></span><span class="sig-name descname"><span class="pre">r2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pepkit.metrics._regression.r2" title="Link to this definition"></a></dt>
+<dd><p>R-squared (coefficient of determination).
+:param y_true: Ground-truth values.
+:param y_pred: Predicted values.
+:param normalize: Whether to min-max normalize y_true/y_pred to [0, 1].
+:return: R² value.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.metrics._regression.rmse">
+<span class="sig-prename descclassname"><span class="pre">pepkit.metrics._regression.</span></span><span class="sig-name descname"><span class="pre">rmse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pepkit.metrics._regression.rmse" title="Link to this definition"></a></dt>
+<dd><p>Root Mean Squared Error (RMSE).
+:param y_true: Ground-truth values.
+:param y_pred: Predicted values.
+:param normalize: Whether to min-max normalize y_true/y_pred to [0, 1].
+:return: RMSE value.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.metrics._regression.spearman_corr">
+<span class="sig-prename descclassname"><span class="pre">pepkit.metrics._regression.</span></span><span class="sig-name descname"><span class="pre">spearman_corr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pepkit.metrics._regression.spearman_corr" title="Link to this definition"></a></dt>
+<dd><p>Spearman’s rank correlation coefficient (SCC).
+:param y_true: Ground-truth values.
+:param y_pred: Predicted values.
+:param normalize: Whether to min-max normalize y_true/y_pred to [0, 1].
+:return: SCC value.</p>
+</dd></dl>
+
+</section>
+<section id="classification-metrics-pepkit-metrics-classification">
+<h3>Classification Metrics (<cite>pepkit.metrics._classification</cite>)<a class="headerlink" href="#classification-metrics-pepkit-metrics-classification" title="Link to this heading"></a></h3>
+<p>Metrics for classification tasks relevant to peptide modeling.</p>
+<dl class="py function" id="module-pepkit.metrics._classification">
+<dt class="sig sig-object py" id="pepkit.metrics._classification.auc_score">
+<span class="sig-prename descclassname"><span class="pre">pepkit.metrics._classification.</span></span><span class="sig-name descname"><span class="pre">auc_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred_proba</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pepkit.metrics._classification.auc_score" title="Link to this definition"></a></dt>
+<dd><p>Area Under the ROC Curve (AUC).
+:param y_true: Binary labels.
+:param y_pred_proba: Predicted probabilities.
+:param normalize: If True, normalize y_pred_proba to [0, 1].
+:return: AUC score.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.metrics._classification.average_precision">
+<span class="sig-prename descclassname"><span class="pre">pepkit.metrics._classification.</span></span><span class="sig-name descname"><span class="pre">average_precision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred_proba</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pepkit.metrics._classification.average_precision" title="Link to this definition"></a></dt>
+<dd><p>Average Precision (AP).
+:param y_true: Binary labels.
+:param y_pred_proba: Predicted probabilities.
+:param normalize: If True, normalize y_pred_proba to [0, 1].
+:return: AP score.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.metrics._classification.enrichment_factor">
+<span class="sig-prename descclassname"><span class="pre">pepkit.metrics._classification.</span></span><span class="sig-name descname"><span class="pre">enrichment_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred_proba</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pepkit.metrics._classification.enrichment_factor" title="Link to this definition"></a></dt>
+<dd><p>Enrichment Factor (EF) at given % cutoff.
+:param y_true: Binary labels.
+:param y_pred_proba: Predicted probabilities.
+:param top_percent: Top % to consider (e.g., 1 for top 1%).
+:param normalize: If True, normalize y_pred_proba to [0, 1].
+:return: EF value.</p>
+</dd></dl>
+
+</section>
+<section id="base-metrics-pepkit-metrics-base">
+<h3>Base Metrics (<cite>pepkit.metrics._base</cite>)<a class="headerlink" href="#base-metrics-pepkit-metrics-base" title="Link to this heading"></a></h3>
+<p>Core metric computation routines shared across regression and classification.</p>
+<dl class="py function" id="module-pepkit.metrics._base">
+<dt class="sig sig-object py" id="pepkit.metrics._base.compute_classification_metrics">
+<span class="sig-prename descclassname"><span class="pre">pepkit.metrics._base.</span></span><span class="sig-name descname"><span class="pre">compute_classification_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred_proba</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_percents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1,</span> <span class="pre">5,</span> <span class="pre">10]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pepkit.metrics._base.compute_classification_metrics" title="Link to this definition"></a></dt>
+<dd><p>Compute common classification metrics for binary y_true and
+probabilistic y_pred_proba.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_true</strong> – Binary true labels (0 or 1).</p></li>
+<li><p><strong>y_pred_proba</strong> – Predicted probabilities for the positive class.</p></li>
+<li><p><strong>top_percents</strong> – List of top-% cutoffs for enrichment factor (default: [1, 5, 10])</p></li>
+<li><p><strong>normalize</strong> – Whether to min-max normalize probabilities to [0, 1].</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict of all classification metrics.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.metrics._base.compute_metrics_from_dataframe">
+<span class="sig-prename descclassname"><span class="pre">pepkit.metrics._base.</span></span><span class="sig-name descname"><span class="pre">compute_metrics_from_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ground_truth_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'regression'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_percents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[1,</span> <span class="pre">5,</span> <span class="pre">10]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pepkit.metrics._base.compute_metrics_from_dataframe" title="Link to this definition"></a></dt>
+<dd><p>Compute regression or classification metrics from a DataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> – DataFrame with at least two columns.</p></li>
+<li><p><strong>ground_truth_key</strong> – Column name for ground truth values (y or y_true).</p></li>
+<li><p><strong>pred_key</strong> – Column name for predictions (y_hat or y_pred).</p></li>
+<li><p><strong>task</strong> – “regression” or “classification”.</p></li>
+<li><p><strong>normalize</strong> – Whether to min-max normalize inputs.</p></li>
+<li><p><strong>top_percents</strong> – For classification, list of EF cutoffs.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary of metrics.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.metrics._base.compute_regression_metrics">
+<span class="sig-prename descclassname"><span class="pre">pepkit.metrics._base.</span></span><span class="sig-name descname"><span class="pre">compute_regression_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pepkit.metrics._base.compute_regression_metrics" title="Link to this definition"></a></dt>
+<dd><p>Compute common regression metrics between y_true and y_pred.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_true</strong> – Ground-truth continuous values.</p></li>
+<li><p><strong>y_pred</strong> – Predicted continuous values.</p></li>
+<li><p><strong>normalize</strong> – Whether to min-max normalize inputs to [0, 1].</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict of all regression metrics.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="common-metrics-pepkit-metrics-common">
+<h3>Common Metrics (<cite>pepkit.metrics._common</cite>)<a class="headerlink" href="#common-metrics-pepkit-metrics-common" title="Link to this heading"></a></h3>
+<p>Utility functions and common scoring routines.</p>
+<dl class="py function" id="module-pepkit.metrics._common">
+<dt class="sig sig-object py" id="pepkit.metrics._common.normalize_minmax">
+<span class="sig-prename descclassname"><span class="pre">pepkit.metrics._common.</span></span><span class="sig-name descname"><span class="pre">normalize_minmax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pepkit.metrics._common.normalize_minmax" title="Link to this definition"></a></dt>
+<dd><p>Min-max normalize an array to the range [0, 1].</p>
+<p>The function rescales the input array so that its minimum value becomes 0
+and its maximum value becomes 1. If all values are identical, returns an
+array of zeros.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>arr</strong> (<em>array-like</em>) – Input array-like data (list, tuple, or numpy array).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Numpy array scaled to [0, 1].</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<section id="id3">
+<h4>Example<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">normalize_minmax</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="go">array([0. , 0.5, 1. ])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">normalize_minmax</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="go">array([0., 0., 0.])</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+</section>
+</section>
+<section id="dock-module">
+<h2>Dock Module<a class="headerlink" href="#dock-module" title="Link to this heading"></a></h2>
+<section id="rosetta-refinement-dock-pepkit-dock-rosetta-refinement-dock">
+<h3>Rosetta Refinement Dock (<cite>pepkit.dock.rosetta.refinement_dock</cite>)<a class="headerlink" href="#rosetta-refinement-dock-pepkit-dock-rosetta-refinement-dock" title="Link to this heading"></a></h3>
+<p>Implements Rosetta-based peptide docking protocols.</p>
+<dl class="py function" id="module-pepkit.dock.rosetta.refinement_dock">
+<dt class="sig sig-object py" id="pepkit.dock.rosetta.refinement_dock.refinement_dock">
+<span class="sig-prename descclassname"><span class="pre">pepkit.dock.rosetta.refinement_dock.</span></span><span class="sig-name descname"><span class="pre">refinement_dock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_main</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_pdb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepack_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refinement_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nstruct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pepkit.dock.rosetta.refinement_dock.refinement_dock" title="Link to this definition"></a></dt>
+<dd><p>Run the two-step Rosetta docking pipeline: prepack (global) + refinement (local).</p>
+<p>This function performs global docking (prepack) for a given input structure,
+identifies the lowest-scoring output, and then runs local refinement starting
+from the best global result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_to_main</strong> (<em>str</em>) – Path to the main RosettaScripts executable or protocol folder.</p></li>
+<li><p><strong>path_to_db</strong> (<em>str</em>) – Path to the Rosetta database directory.</p></li>
+<li><p><strong>input_pdb</strong> (<em>str</em>) – Path to the input PDB file to be docked.</p></li>
+<li><p><strong>prepack_out</strong> (<em>str</em>) – Output directory for prepack (global docking) results.</p></li>
+<li><p><strong>refinement_out</strong> (<em>str</em>) – Output directory for local refinement results.</p></li>
+<li><p><strong>nstruct</strong> (<em>int</em>) – Number of refinement structures to generate (default: 5).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<section id="workflow">
+<h4>Workflow<a class="headerlink" href="#workflow" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Runs <cite>prepack</cite> on the input PDB.</p></li>
+<li><p>Parses prepack score file to find the optimal structure.</p></li>
+<li><p>Runs <cite>rosetta_refinement</cite> on the optimal structure from prepack.</p></li>
+</ol>
+<p>4. Logs progress and errors.
+:raises Exception: If any error occurs in docking or refinement.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.dock.rosetta.refinement_dock.refinement_multiple_dock">
+<span class="sig-prename descclassname"><span class="pre">pepkit.dock.rosetta.refinement_dock.</span></span><span class="sig-name descname"><span class="pre">refinement_multiple_dock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_main</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdb_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepack_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refinement_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nstruct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pepkit.dock.rosetta.refinement_dock.refinement_multiple_dock" title="Link to this definition"></a></dt>
+<dd><p>Batch run the two-step docking workflow for all PDB files in a directory.</p>
+<p>For each PDB file in <cite>pdb_dir</cite>, runs <cite>refinement_dock</cite> using distinct
+subfolders in the output directories. Progress and errors are logged.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_to_main</strong> (<em>str</em>) – Path to the main RosettaScripts executable or protocol folder.</p></li>
+<li><p><strong>path_to_db</strong> (<em>str</em>) – Path to the Rosetta database directory.</p></li>
+<li><p><strong>pdb_dir</strong> (<em>str</em>) – Directory containing input PDB files to dock.</p></li>
+<li><p><strong>prepack_out</strong> (<em>str</em>) – Root directory for all prepack outputs.</p></li>
+<li><p><strong>refinement_out</strong> (<em>str</em>) – Root directory for all refinement outputs.</p></li>
+<li><p><strong>nstruct</strong> – Number of refinement structures to generate for each input</p></li>
+</ul>
+</dd>
+</dl>
+<p>(default: 5).
+:type nstruct: int
+:return: None</p>
+<section id="id4">
+<h4>Workflow<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>For each <cite>.pdb</cite> file in <cite>pdb_dir</cite>:</dt><dd><ol class="arabic simple">
+<li><p>Creates dedicated subdirectories for prepack and refinement.</p></li>
+<li><p>Runs <cite>refinement_dock</cite> for the input file.</p></li>
+<li><p>Logs errors and status for each file.</p></li>
+</ol>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">raises Exception<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any error during processing of a particular PDB will be logged</p>
+</dd>
+</dl>
+<p>but will not stop the batch.</p>
+</section>
+</dd></dl>
+
+</section>
+<section id="rosetta-score-pepkit-dock-rosetta-score">
+<h3>Rosetta Score (<cite>pepkit.dock.rosetta.score</cite>)<a class="headerlink" href="#rosetta-score-pepkit-dock-rosetta-score" title="Link to this heading"></a></h3>
+<p>Extraction and processing of Rosetta docking scores.</p>
+<p id="module-pepkit.dock.rosetta.score">Utility functions for parsing and aggregating Rosetta docking score files.</p>
+<dl class="simple">
+<dt>This module provides tools for:</dt><dd><ul class="simple">
+<li><p>Reading score files with variable space-separated columns into pandas DataFrames,</p></li>
+<li><p>Aggregating score files from multiple subfolders and tagging their origin,</p></li>
+<li><p>Extracting the best (lowest-score) description from a score table.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Typical use case: You have a directory of experiment subfolders, each containing a
+Rosetta score file (e.g. ‘docking_scores.sc’). You want a single table with all results,
+with each row labeled by subfolder, and a convenient way to select the best
+complex per run.</p>
+<section id="functions">
+<h4>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><dl class="simple">
+<dt>read_and_convert(filepath)</dt><dd><p>Reads a single score file into a DataFrame.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>get_optimal_clx(df)</dt><dd><p>Returns the ‘description’ for the entry with the lowest ‘total_score’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>extract_score(dirpath, input_score_name)</dt><dd><p>Aggregates all score files under a directory tree into a single DataFrame,
+adding an ‘id’ (subfolder) column and ensuring ‘id’ and ‘description’
+are the leftmost columns.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.dock.rosetta.score.extract_score">
+<span class="sig-prename descclassname"><span class="pre">pepkit.dock.rosetta.score.</span></span><span class="sig-name descname"><span class="pre">extract_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dirpath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_score_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'docking_scores.sc'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pepkit.dock.rosetta.score.extract_score" title="Link to this definition"></a></dt>
+<dd><p>Aggregate score files from subfolders into one DataFrame, labeling by subfolder.</p>
+<p>For each subfolder in <cite>dirpath</cite>, if a file named <cite>input_score_name</cite> exists,
+it is parsed and appended to a master DataFrame. Each row is tagged with an ‘id’
+column set to the subfolder name. Columns are reordered to put ‘id’ and ‘description’
+first if present.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dirpath</strong> (<em>str</em>) – Path to the parent directory containing subfolders with score files.</p></li>
+<li><p><strong>input_score_name</strong> – Name of the score file in each subfolder</p></li>
+</ul>
+</dd>
+</dl>
+<p>(default: ‘docking_scores.sc’).
+:type input_score_name: str
+:return: DataFrame with all scores, ‘id’ and ‘description’ as the leftmost columns.
+:rtype: pandas.DataFrame</p>
+<section id="id5">
+<h4>Example<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">extract_score</span><span class="p">(</span><span class="s1">&#39;experiments&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.dock.rosetta.score.get_optimal_clx">
+<span class="sig-prename descclassname"><span class="pre">pepkit.dock.rosetta.score.</span></span><span class="sig-name descname"><span class="pre">get_optimal_clx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pepkit.dock.rosetta.score.get_optimal_clx" title="Link to this definition"></a></dt>
+<dd><p>Identify the entry with the lowest ‘total_score’ and return its ‘description’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>pandas.DataFrame</em>) – DataFrame with at least ‘total_score’ and ‘description’ columns.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ‘description’ corresponding to the lowest ‘total_score’,</p>
+</dd>
+</dl>
+<p>or None if not found.
+:rtype: str or None
+:raises ValueError: If the DataFrame does not contain the required columns.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.dock.rosetta.score.read_and_convert">
+<span class="sig-prename descclassname"><span class="pre">pepkit.dock.rosetta.score.</span></span><span class="sig-name descname"><span class="pre">read_and_convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pepkit.dock.rosetta.score.read_and_convert" title="Link to this definition"></a></dt>
+<dd><p>Parse a Rosetta-style score file into a pandas DataFrame.</p>
+<p>Skips lines that start with ‘SEQUENCE’. Handles variable whitespace. Converts
+columns to numeric where possible.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em>) – The path to the score file to read.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Parsed DataFrame with data from the file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>FileNotFoundError</strong> – If the file does not exist.</p></li>
+<li><p><strong>pd.errors.ParserError</strong> – If pandas cannot parse the file.</p></li>
+<li><p><strong>Exception</strong> – For other errors encountered during parsing.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="md-module">
+<h2>MD Module<a class="headerlink" href="#md-module" title="Link to this heading"></a></h2>
+<section id="construction-of-interaction-fingerprint-and-frequency">
+<h3>Construction of interaction fingerprint and frequency<a class="headerlink" href="#construction-of-interaction-fingerprint-and-frequency" title="Link to this heading"></a></h3>
+<dl class="py function" id="module-pepkit.md.interaction">
+<dt class="sig sig-object py" id="pepkit.md.interaction.compute_interaction_fingerprint">
+<span class="sig-prename descclassname"><span class="pre">pepkit.md.interaction.</span></span><span class="sig-name descname"><span class="pre">compute_interaction_fingerprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gro_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query_sel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_sel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vc_cutoff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_stride</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#pepkit.md.interaction.compute_interaction_fingerprint" title="Link to this definition"></a></dt>
+<dd><p>Generate a fingerprint of intermolecular interactions and keep only the
+most persistent contacts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gro_path</strong> (<em>str</em>) – Path to the GROMACS topology file (.gro).</p></li>
+<li><p><strong>traj_path</strong> (<em>str</em>) – Path to the GROMACS trajectory file (e.g., .xtc).</p></li>
+<li><p><strong>query_sel</strong> (<em>str</em><em> or </em><em>None</em>) – MDAnalysis selection string defining the ligand atoms.
+If None, uses all atoms.</p></li>
+<li><p><strong>reference_sel</strong> (<em>str</em><em> or </em><em>None</em>) – MDAnalysis selection string defining the protein atoms.
+If None, uses all atoms.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – Fraction of frames an interaction must occur to retain it.</p></li>
+<li><p><strong>n_jobs</strong> (<em>int</em>) – Number of parallel jobs for fingerprint calculation.</p></li>
+<li><p><strong>vc_cutoff</strong> (<em>int</em>) – Distance cutoff (Å) to define an interaction.</p></li>
+<li><p><strong>max_frames</strong> (<em>int</em><em> or </em><em>None</em>) – Maximum number of frames to analyze; None for all.</p></li>
+<li><p><strong>frame_stride</strong> (<em>int</em>) – Step between frames to sample (every Nth frame).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame of filtered interactions with time in nanoseconds as index.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.md.interaction.plot_interaction_fingerprint">
+<span class="sig-prename descclassname"><span class="pre">pepkit.md.interaction.</span></span><span class="sig-name descname"><span class="pre">plot_interaction_fingerprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(8,</span> <span class="pre">18)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pepkit.md.interaction.plot_interaction_fingerprint" title="Link to this definition"></a></dt>
+<dd><p>Display or save a barcode plot of an interaction fingerprint.</p>
+<p>Ensures a ‘ligand’ level exists for ProLIF Barcode by inserting
+a dummy level if needed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fp_df</strong> (<em>pandas.DataFrame</em>) – Time-indexed DataFrame of interactions.</p></li>
+<li><p><strong>save_path</strong> (<em>str</em><em> or </em><em>None</em>) – Path to save the plot PNG; if None, the plot is shown.</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em>) – Size of the figure (width, height) in inches.</p></li>
+<li><p><strong>dpi</strong> (<em>int</em>) – Dots per inch for figure resolution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.md.interaction.protein_interaction_frequency">
+<span class="sig-prename descclassname"><span class="pre">pepkit.md.interaction.</span></span><span class="sig-name descname"><span class="pre">protein_interaction_frequency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#pepkit.md.interaction.protein_interaction_frequency" title="Link to this definition"></a></dt>
+<dd><p>Collapse an interaction fingerprint to per-contact frequencies.</p>
+<p>Handles MultiIndex columns of two or more levels; the last two levels
+are assumed to be protein residue and interaction type respectively.
+If a third level (ligand) is present, it will be included.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fp_df</strong> (<em>pandas.DataFrame</em>) – Fingerprint DataFrame with MultiIndex columns.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame with columns [‘ligand’, ‘protein’, ‘interaction’, ‘frequency’]</p>
+</dd>
+</dl>
+<p>sorted by frequency.
+:rtype: pandas.DataFrame</p>
+</dd></dl>
+
+</section>
+<section id="module-pepkit.md.stable">
+<span id="stability-evaluation-of-trajectories"></span><h3>Stability evaluation of trajectories<a class="headerlink" href="#module-pepkit.md.stable" title="Link to this heading"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.md.stable.compute_rmsd">
+<span class="sig-prename descclassname"><span class="pre">pepkit.md.stable.</span></span><span class="sig-name descname"><span class="pre">compute_rmsd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gro</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_sel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'protein</span> <span class="pre">and</span> <span class="pre">backbone'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_divisor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#pepkit.md.stable.compute_rmsd" title="Link to this definition"></a></dt>
+<dd><p>Compute RMSD over time for specified atom selection, optionally
+starting from a given reference frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gro</strong> – Path to GROMACS .gro file.</p></li>
+<li><p><strong>traj</strong> – Path to trajectory file (e.g., .xtc).</p></li>
+<li><p><strong>atom_sel</strong> – MDAnalysis selection string for RMSD calculation.</p></li>
+<li><p><strong>ref_frame</strong> – Reference frame index; also number of initial frames to skip.</p></li>
+<li><p><strong>time_divisor</strong> – Factor to convert raw time units (ps to ns via 1000).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame with columns [‘time’, ‘rmsd’].</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.md.stable.compute_rmsf">
+<span class="sig-prename descclassname"><span class="pre">pepkit.md.stable.</span></span><span class="sig-name descname"><span class="pre">compute_rmsf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gro</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res_sel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'protein</span> <span class="pre">and</span> <span class="pre">name</span> <span class="pre">CA'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_frames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_stride</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_align</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#pepkit.md.stable.compute_rmsf" title="Link to this definition"></a></dt>
+<dd><p>Compute per-residue RMSF efficiently, with optional alignment, verbosity,
+and parallel loading.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gro</strong> – Path to GROMACS .gro file.</p></li>
+<li><p><strong>traj</strong> – Path to GROMACS trajectory (e.g., .xtc).</p></li>
+<li><p><strong>res_sel</strong> – MDAnalysis atom selection string (e.g., ‘protein and name CA’).</p></li>
+<li><p><strong>ref_frame</strong> – Frame index to use as reference for alignment and start.</p></li>
+<li><p><strong>shift</strong> – Value to add to residue IDs (offset).</p></li>
+<li><p><strong>max_frames</strong> – Max frames to process; None means all available after ref_frame.</p></li>
+<li><p><strong>frame_stride</strong> – Step size for frame sampling.</p></li>
+<li><p><strong>do_align</strong> – Whether to align each frame to the reference</p></li>
+</ul>
+</dd>
+</dl>
+<p>before computing fluctuations.
+:param verbose: If True, prints progress information.
+:param n_jobs: Number of parallel workers to load frames (requires joblib).
+:return: DataFrame with columns [‘resid’, ‘rmsf’].</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.md.stable.plot_rmsd">
+<span class="sig-prename descclassname"><span class="pre">pepkit.md.stable.</span></span><span class="sig-name descname"><span class="pre">plot_rmsd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_rmsd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(12,</span> <span class="pre">6)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pepkit.md.stable.plot_rmsd" title="Link to this definition"></a></dt>
+<dd><p>Enhanced RMSD plot with optional smoothing, shaded variability,
+and bottom-centered legend without shrinking axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df_rmsd</strong> – DataFrame with columns [‘time’, ‘rmsd’].</p></li>
+<li><p><strong>save_path</strong> – File path to save the plot; if None, shows interactively.</p></li>
+<li><p><strong>figsize</strong> – Size of the figure in inches.</p></li>
+<li><p><strong>dpi</strong> – Resolution for saving.</p></li>
+<li><p><strong>smooth_window</strong> – Window size for rolling average smoothing.</p></li>
+<li><p><strong>smooth</strong> – Whether to apply smoothing and variability shading.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.md.stable.plot_rmsf">
+<span class="sig-prename descclassname"><span class="pre">pepkit.md.stable.</span></span><span class="sig-name descname"><span class="pre">plot_rmsf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_rmsf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">highlight_region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_top</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(12,</span> <span class="pre">6)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox_to_anchor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.85,</span> <span class="pre">0.05)</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pepkit.md.stable.plot_rmsf" title="Link to this definition"></a></dt>
+<dd><p>Enhanced RMSF plot with optional highlighted region,
+top-residue annotations, and bottom-centered legend.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df_rmsf</strong> – DataFrame with columns [‘resid’, ‘rmsf’].</p></li>
+<li><p><strong>highlight_region</strong> – Tuple (start, end) to highlight a residue range.</p></li>
+<li><p><strong>show_top</strong> – Number of top RMSF residues to annotate.</p></li>
+<li><p><strong>save_path</strong> – File path to save the plot; if None, shows interactively.</p></li>
+<li><p><strong>figsize</strong> – Figure size in inches.</p></li>
+<li><p><strong>dpi</strong> – Resolution for saving.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="io-module">
+<h2>IO Module<a class="headerlink" href="#io-module" title="Link to this heading"></a></h2>
+<section id="file-io-pepkit-io-files">
+<h3>File IO (<cite>pepkit.io.files</cite>)<a class="headerlink" href="#file-io-pepkit-io-files" title="Link to this heading"></a></h3>
+<p>Tools for handling peptide file input/output operations.</p>
+<p id="module-pepkit.io.files">High‑level file I/O helpers for JSON, CSV, text, and atomic writes.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.io.files.atomic_write">
+<span class="sig-prename descclassname"><span class="pre">pepkit.io.files.</span></span><span class="sig-name descname"><span class="pre">atomic_write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'w'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newline</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pepkit.io.files.atomic_write" title="Link to this definition"></a></dt>
+<dd><p>Write <em>data</em> to <em>path</em> via a temporary file and <cite>shutil.move</cite> to guarantee
+that either the previous version or the new version exists (never a half‑write).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.io.files.read_csv">
+<span class="sig-prename descclassname"><span class="pre">pepkit.io.files.</span></span><span class="sig-name descname"><span class="pre">read_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#pepkit.io.files.read_csv" title="Link to this definition"></a></dt>
+<dd><p>Thin wrapper around <code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.read_csv()</span></code> that expands <code class="docutils literal notranslate"><span class="pre">~</span></code> automatically.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.io.files.read_json">
+<span class="sig-prename descclassname"><span class="pre">pepkit.io.files.</span></span><span class="sig-name descname"><span class="pre">read_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#pepkit.io.files.read_json" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.io.files.read_text">
+<span class="sig-prename descclassname"><span class="pre">pepkit.io.files.</span></span><span class="sig-name descname"><span class="pre">read_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pepkit.io.files.read_text" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.io.files.write_csv">
+<span class="sig-prename descclassname"><span class="pre">pepkit.io.files.</span></span><span class="sig-name descname"><span class="pre">write_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pepkit.io.files.write_csv" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.io.files.write_json">
+<span class="sig-prename descclassname"><span class="pre">pepkit.io.files.</span></span><span class="sig-name descname"><span class="pre">write_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pepkit.io.files.write_json" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.io.files.write_text">
+<span class="sig-prename descclassname"><span class="pre">pepkit.io.files.</span></span><span class="sig-name descname"><span class="pre">write_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pepkit.io.files.write_text" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.io.files.write_tsv">
+<span class="sig-prename descclassname"><span class="pre">pepkit.io.files.</span></span><span class="sig-name descname"><span class="pre">write_tsv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fieldnames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'utf-8'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pepkit.io.files.write_tsv" title="Link to this definition"></a></dt>
+<dd><p>Quick TSV writer for small data structures.</p>
+</dd></dl>
+
+</section>
+<section id="logging-pepkit-io-logging">
+<h3>Logging (<cite>pepkit.io.logging</cite>)<a class="headerlink" href="#logging-pepkit-io-logging" title="Link to this heading"></a></h3>
+<p>Unified logging interface for workflow monitoring and reproducibility.</p>
+<p id="module-pepkit.io.logging">Light‑weight logging helpers for every script and library in the project.
+Usage
+—–
+from io.logging import setup_logging, get_logger
+setup_logging(level=”DEBUG”, logfile=”run.log”)
+log = get_logger(__name__)
+log.info(“Hello world!”)</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.io.logging.get_logger">
+<span class="sig-prename descclassname"><span class="pre">pepkit.io.logging.</span></span><span class="sig-name descname"><span class="pre">get_logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Logger</span></span></span><a class="headerlink" href="#pepkit.io.logging.get_logger" title="Link to this definition"></a></dt>
+<dd><p>Thin wrapper around <code class="docutils literal notranslate"><span class="pre">logging.getLogger</span></code> after <a class="reference internal" href="#pepkit.io.logging.setup_logging" title="pepkit.io.logging.setup_logging"><code class="xref py py-func docutils literal notranslate"><span class="pre">setup_logging()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.io.logging.setup_logging">
+<span class="sig-prename descclassname"><span class="pre">pepkit.io.logging.</span></span><span class="sig-name descname"><span class="pre">setup_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'%(asctime)s</span> <span class="pre">%(levelname)-8s</span> <span class="pre">│</span> <span class="pre">%(name)s:</span> <span class="pre">%(message)s'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datefmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'%Y-%m-%d</span> <span class="pre">%H:%M:%S'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logfile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filesize_limit_mb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backup_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pepkit.io.logging.setup_logging" title="Link to this definition"></a></dt>
+<dd><p>Configure the root logger exactly <em>once</em>.
+• All messages ≥ <em>level</em> go to stderr (StreamHandler).
+• Optionally duplicate to a rotating file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pepkit.io.logging.temporary_log_level">
+<span class="sig-prename descclassname"><span class="pre">pepkit.io.logging.</span></span><span class="sig-name descname"><span class="pre">temporary_log_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pepkit.io.logging.temporary_log_level" title="Link to this definition"></a></dt>
+<dd><p>Context‑manager to temporarily change <em>logger</em>’s level:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">temporary_log_level</span><span class="p">(</span><span class="n">log</span><span class="p">,</span> <span class="s2">&quot;DEBUG&quot;</span><span class="p">):</span>
+    <span class="o">...</span>  <span class="c1"># more verbose output here</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dock.html" class="btn btn-neutral float-left" title="Dock" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Vivi-Tran.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

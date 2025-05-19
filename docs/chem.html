@@ -1,0 +1,213 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pepkit.chem &mdash; pepkit  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Metrics" href="metrics.html" />
+    <link rel="prev" title="Getting Started" href="getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            pepkit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Chemical Modeling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sequence-and-smiles-conversion">Sequence and SMILES Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#property-calculation">Property Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#standardization-and-filtering">Standardization and Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#descriptor-calculation">Descriptor Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-and-api-reference">Testing and API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dock.html">Dock</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pepkit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">pepkit.chem</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/chem.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pepkit-chem">
+<span id="chem"></span><h1>pepkit.chem<a class="headerlink" href="#pepkit-chem" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">pepkit.chem</span></code> module provides utilities for working with peptide and protein sequences, SMILES, standardization, and feature extraction.</p>
+<section id="key-features">
+<h2>Key Features<a class="headerlink" href="#key-features" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Sequence/SMILES conversion:</strong>
+Convert between FASTA/sequence and canonical SMILES.</p></li>
+<li><p><strong>Property calculation:</strong>
+Compute net charge, molecular weight, and isoelectric point (pI) for peptide input.</p></li>
+<li><p><strong>Standardization:</strong>
+Filter/clean sequence data, optionally enforce canonical residues or pH charge state, with robust DataFrame and batch support.</p></li>
+<li><p><strong>Descriptor calculation:</strong>
+Generate sequence or molecule descriptors for ML applications with peptide or RDKit engines.</p></li>
+</ul>
+</section>
+<section id="sequence-and-smiles-conversion">
+<h2>Sequence and SMILES Conversion<a class="headerlink" href="#sequence-and-smiles-conversion" title="Link to this heading"></a></h2>
+<p>Convert a peptide sequence to canonical SMILES:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pepkit.chem</span> <span class="kn">import</span> <span class="n">fasta_to_smiles</span>
+
+<span class="n">fasta</span> <span class="o">=</span> <span class="s2">&quot;ACDE&quot;</span>
+<span class="n">smiles</span> <span class="o">=</span> <span class="n">fasta_to_smiles</span><span class="p">(</span><span class="n">fasta</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">smiles</span><span class="p">)</span>
+<span class="c1"># Output: &#39;C[C@H](N)C(=O)N[C@@H](CS)C(=O)N[C@@H](CC(=O)O)C(=O)N[C@@H](CCC(=O)O)C(=O)O&#39;</span>
+</pre></div>
+</div>
+<p>Convert back from SMILES to sequence (with optional FASTA header):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pepkit.chem</span> <span class="kn">import</span> <span class="n">smiles_to_fasta</span>
+
+<span class="n">seq</span> <span class="o">=</span> <span class="n">smiles_to_fasta</span><span class="p">(</span><span class="n">smiles</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s2">&quot;peptide1&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+<span class="c1"># Output:</span>
+<span class="c1"># &gt;peptide1</span>
+<span class="c1"># ACDE</span>
+</pre></div>
+</div>
+</section>
+<section id="property-calculation">
+<h2>Property Calculation<a class="headerlink" href="#property-calculation" title="Link to this heading"></a></h2>
+<p>Compute molecular properties from sequence, FASTA, or SMILES:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pepkit.chem</span> <span class="kn">import</span> <span class="n">compute_peptide_properties</span>
+
+<span class="n">props</span> <span class="o">=</span> <span class="n">compute_peptide_properties</span><span class="p">(</span><span class="s2">&quot;ACDE&quot;</span><span class="p">,</span> <span class="n">pH</span><span class="o">=</span><span class="mf">7.4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">props</span><span class="p">)</span>
+<span class="c1"># Output: {&#39;molecular_weight&#39;: 436.4430000000002, &#39;net_charge&#39;: -2, &#39;isoelectric_point&#39;: 3.8000000016763806}</span>
+</pre></div>
+</div>
+</section>
+<section id="standardization-and-filtering">
+<h2>Standardization and Filtering<a class="headerlink" href="#standardization-and-filtering" title="Link to this heading"></a></h2>
+<p>Standardize a list of peptide sequences (remove non-canonical, set charge by pH):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pepkit.chem.standardize</span> <span class="kn">import</span> <span class="n">Standardizer</span>
+
+<span class="n">std</span> <span class="o">=</span> <span class="n">Standardizer</span><span class="p">(</span><span class="n">remove_non_canonical</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">charge_by_pH</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pH</span><span class="o">=</span><span class="mf">7.0</span><span class="p">)</span>
+<span class="n">seqs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ACDEFGHIK&quot;</span><span class="p">,</span> <span class="s2">&quot;XYZ&quot;</span><span class="p">]</span>
+<span class="n">standardized</span> <span class="o">=</span> <span class="n">std</span><span class="o">.</span><span class="n">process_list_fasta</span><span class="p">(</span><span class="n">seqs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">standardized</span><span class="p">)</span>
+<span class="c1"># Output: [&#39;CC[C@H](C)[C@H](NC(=O)[C@H](Cc1c[nH]cn1)NC(=O)CNC(=O)[C@H](Cc1ccccc1)NC(=O)[C@H](CCC(=O)[O-])NC(=O)[C@H](CC(=O)[O-])NC(=O)[C@H](CS)NC(=O)[C@H](C)[NH3+])C(=O)N[C@@H](CCCC[NH3+])C(=O)[O-]&#39;, None]</span>
+</pre></div>
+</div>
+<p>For pandas DataFrames:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;fasta&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;ACDEFGHIK&quot;</span><span class="p">,</span> <span class="s2">&quot;XYZ&quot;</span><span class="p">]})</span>
+<span class="n">std</span> <span class="o">=</span> <span class="n">Standardizer</span><span class="p">(</span><span class="n">remove_non_canonical</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">charge_by_pH</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pH</span><span class="o">=</span><span class="mf">7.0</span><span class="p">)</span>
+<span class="n">df_std</span> <span class="o">=</span> <span class="n">std</span><span class="o">.</span><span class="n">data_process</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">fasta_key</span><span class="o">=</span><span class="s1">&#39;fasta&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_std</span><span class="p">)</span>
+<span class="c1"># Output: DataFrame with &#39;smiles&#39; column standardized</span>
+</pre></div>
+</div>
+</section>
+<section id="descriptor-calculation">
+<h2>Descriptor Calculation<a class="headerlink" href="#descriptor-calculation" title="Link to this heading"></a></h2>
+<p>Calculate peptide or molecular descriptors:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pepkit.chem.descriptor</span> <span class="kn">import</span> <span class="n">Descriptor</span>
+
+<span class="c1"># Peptide descriptors</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;pep1&quot;</span><span class="p">,</span> <span class="s2">&quot;peptide_sequence&quot;</span><span class="p">:</span> <span class="s2">&quot;ACDE&quot;</span><span class="p">}]</span>
+<span class="n">desc_pep</span> <span class="o">=</span> <span class="n">Descriptor</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="s2">&quot;peptides&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">desc_pep</span><span class="p">)</span>
+
+<span class="c1"># RDKit molecular descriptors</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;mol1&quot;</span><span class="p">,</span> <span class="s2">&quot;smiles&quot;</span><span class="p">:</span> <span class="s2">&quot;CCO&quot;</span><span class="p">}]</span>
+<span class="n">desc_mol</span> <span class="o">=</span> <span class="n">Descriptor</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="s2">&quot;rdkit&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">desc_mol</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="testing-and-api-reference">
+<h2>Testing and API Reference<a class="headerlink" href="#testing-and-api-reference" title="Link to this heading"></a></h2>
+<p>See <code class="docutils literal notranslate"><span class="pre">test/chem/</span></code> for complete unittests and example-based validation.</p>
+<p>Full function and class documentation: see <a class="reference external" href="https://Vivi-tran.github.io/PepKit/api.html">API Reference</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="metrics.html" class="btn btn-neutral float-right" title="Metrics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Vivi-Tran.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
