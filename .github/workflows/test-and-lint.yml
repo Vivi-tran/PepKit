@@ -1,13 +1,10 @@
-# This workflow will install Python dependencies, run tests and lint with a 
-# single version of Python
-# For more information see: 
-# https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+# This workflow installs Python dependencies, runs tests and lints for PepKit
 
 name: Test & Lint
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "dev" ]
   pull_request:
     branches: [ "main" ]
 
@@ -30,7 +27,7 @@ jobs:
         python-version: 3.11
 
     # Create and activate Conda environment
-    - name: Create and activate environment
+    - name: Create and activate pepkit environment
       run: |
         conda create --name pepkit-env python=3.11 -y
         conda activate pepkit-env
@@ -43,12 +40,12 @@ jobs:
       run: |
         conda activate pepkit-env
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        ./lint.sh
+        if [ -f lint.sh ]; then ./lint.sh; fi
       shell: bash -l {0}
 
-    # # Test with pytest
-    # - name: Test with pytest
-    #   run: |
-    #     conda activate pepkit-env
-    #     ./pytest.sh 
-    #   shell: bash -l {0}
+    # Test with pytest
+    - name: Test with pytest
+      run: |
+        conda activate pepkit-env
+        if [ -f pytest.sh ]; then ./pytest.sh; else pytest; fi
+      shell: bash -l {0}
