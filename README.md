@@ -32,7 +32,7 @@ Install via pip:
 pip install pepkit
 ```
 
-Or cline the repository
+Or clone the repository
 
 ```bash
 git clone https://github.com/Vivi-tran/PepKit.git
