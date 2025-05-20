@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pepkit"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
     {name="Ngoc-Vi Nguyen TRAN", email="nguyen-ngoc-vi.tran.6279@student.uu.se"}
 ]
