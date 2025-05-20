@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pepkit.chem &mdash; pepkit  documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
@@ -57,6 +57,7 @@
 <li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dock.html">Dock</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 </ul>
 
         </div>
@@ -102,7 +103,7 @@ Generate sequence or molecule descriptors for ML applications with peptide or RD
 <section id="sequence-and-smiles-conversion">
 <h2>Sequence and SMILES Conversion<a class="headerlink" href="#sequence-and-smiles-conversion" title="Link to this heading"></a></h2>
 <p>Convert a peptide sequence to canonical SMILES:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pepkit.chem</span> <span class="kn">import</span> <span class="n">fasta_to_smiles</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pepkit.chem</span><span class="w"> </span><span class="kn">import</span> <span class="n">fasta_to_smiles</span>
 
 <span class="n">fasta</span> <span class="o">=</span> <span class="s2">&quot;ACDE&quot;</span>
 <span class="n">smiles</span> <span class="o">=</span> <span class="n">fasta_to_smiles</span><span class="p">(</span><span class="n">fasta</span><span class="p">)</span>
@@ -111,7 +112,7 @@ Generate sequence or molecule descriptors for ML applications with peptide or RD
 </pre></div>
 </div>
 <p>Convert back from SMILES to sequence (with optional FASTA header):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pepkit.chem</span> <span class="kn">import</span> <span class="n">smiles_to_fasta</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pepkit.chem</span><span class="w"> </span><span class="kn">import</span> <span class="n">smiles_to_fasta</span>
 
 <span class="n">seq</span> <span class="o">=</span> <span class="n">smiles_to_fasta</span><span class="p">(</span><span class="n">smiles</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s2">&quot;peptide1&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
@@ -124,7 +125,7 @@ Generate sequence or molecule descriptors for ML applications with peptide or RD
 <section id="property-calculation">
 <h2>Property Calculation<a class="headerlink" href="#property-calculation" title="Link to this heading"></a></h2>
 <p>Compute molecular properties from sequence, FASTA, or SMILES:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pepkit.chem</span> <span class="kn">import</span> <span class="n">compute_peptide_properties</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pepkit.chem</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_peptide_properties</span>
 
 <span class="n">props</span> <span class="o">=</span> <span class="n">compute_peptide_properties</span><span class="p">(</span><span class="s2">&quot;ACDE&quot;</span><span class="p">,</span> <span class="n">pH</span><span class="o">=</span><span class="mf">7.4</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">props</span><span class="p">)</span>
@@ -135,7 +136,7 @@ Generate sequence or molecule descriptors for ML applications with peptide or RD
 <section id="standardization-and-filtering">
 <h2>Standardization and Filtering<a class="headerlink" href="#standardization-and-filtering" title="Link to this heading"></a></h2>
 <p>Standardize a list of peptide sequences (remove non-canonical, set charge by pH):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pepkit.chem.standardize</span> <span class="kn">import</span> <span class="n">Standardizer</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pepkit.chem.standardize</span><span class="w"> </span><span class="kn">import</span> <span class="n">Standardizer</span>
 
 <span class="n">std</span> <span class="o">=</span> <span class="n">Standardizer</span><span class="p">(</span><span class="n">remove_non_canonical</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">charge_by_pH</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pH</span><span class="o">=</span><span class="mf">7.0</span><span class="p">)</span>
 <span class="n">seqs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ACDEFGHIK&quot;</span><span class="p">,</span> <span class="s2">&quot;XYZ&quot;</span><span class="p">]</span>
@@ -145,7 +146,7 @@ Generate sequence or molecule descriptors for ML applications with peptide or RD
 </pre></div>
 </div>
 <p>For pandas DataFrames:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;fasta&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;ACDEFGHIK&quot;</span><span class="p">,</span> <span class="s2">&quot;XYZ&quot;</span><span class="p">]})</span>
 <span class="n">std</span> <span class="o">=</span> <span class="n">Standardizer</span><span class="p">(</span><span class="n">remove_non_canonical</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">charge_by_pH</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pH</span><span class="o">=</span><span class="mf">7.0</span><span class="p">)</span>
@@ -158,7 +159,7 @@ Generate sequence or molecule descriptors for ML applications with peptide or RD
 <section id="descriptor-calculation">
 <h2>Descriptor Calculation<a class="headerlink" href="#descriptor-calculation" title="Link to this heading"></a></h2>
 <p>Calculate peptide or molecular descriptors:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pepkit.chem.descriptor</span> <span class="kn">import</span> <span class="n">Descriptor</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pepkit.chem.descriptor</span><span class="w"> </span><span class="kn">import</span> <span class="n">Descriptor</span>
 
 <span class="c1"># Peptide descriptors</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;pep1&quot;</span><span class="p">,</span> <span class="s2">&quot;peptide_sequence&quot;</span><span class="p">:</span> <span class="s2">&quot;ACDE&quot;</span><span class="p">}]</span>

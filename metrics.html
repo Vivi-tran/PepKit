@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Metrics &mdash; pepkit  documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="pepkit.dock.rosetta" href="dock.html" />
+    <link rel="next" title="Dock" href="dock.html" />
     <link rel="prev" title="pepkit.chem" href="chem.html" /> 
 </head>
 
@@ -96,8 +96,8 @@
 <li><p><cite>r2</cite>: Coefficient of determination (R² score).</p></li>
 </ul>
 <p><em>Example:</em></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">pepkit.metrics</span> <span class="kn">import</span> <span class="n">_regression</span> <span class="k">as</span> <span class="n">reg</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pepkit.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">_regression</span> <span class="k">as</span> <span class="n">reg</span>
 
 <span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">5.4</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mf">4.8</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">])</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">7.467</span><span class="p">,</span> <span class="mf">7.303</span><span class="p">,</span> <span class="mf">7.369</span><span class="p">,</span> <span class="mf">7.633</span><span class="p">,</span> <span class="mf">7.52</span><span class="p">])</span>
@@ -118,8 +118,8 @@
 <li><p><cite>enrichment_factor</cite>: Early enrichment metric (EF) for virtual screening, with customizable cutoffs.</p></li>
 </ul>
 <p><em>Example:</em></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">pepkit.metrics</span> <span class="kn">import</span> <span class="n">_classification</span> <span class="k">as</span> <span class="n">clf</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pepkit.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">_classification</span> <span class="k">as</span> <span class="n">clf</span>
 
 <span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">])</span>
@@ -138,9 +138,9 @@
 <li><p><cite>compute_metrics_from_dataframe</cite>: Computes metrics from DataFrame columns for either regression or classification tasks.</p></li>
 </ul>
 <p><em>Example:</em></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">pepkit.metrics._base</span> <span class="kn">import</span> <span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pepkit.metrics._base</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">compute_regression_metrics</span><span class="p">,</span> <span class="n">compute_classification_metrics</span><span class="p">,</span> <span class="n">compute_metrics_from_dataframe</span>
 <span class="p">)</span>
 
@@ -175,7 +175,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="chem.html" class="btn btn-neutral float-left" title="pepkit.chem" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="dock.html" class="btn btn-neutral float-right" title="pepkit.dock.rosetta" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dock.html" class="btn btn-neutral float-right" title="Dock" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

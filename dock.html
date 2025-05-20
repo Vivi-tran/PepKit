@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dock &mdash; pepkit  documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
@@ -110,8 +110,8 @@
 </ul>
 </div></blockquote>
 <p><strong>Example:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pepkit.dock.rosetta.refinement_dock</span> <span class="kn">import</span> <span class="n">refinement_multiple_dock</span>
-<span class="kn">from</span> <span class="nn">pepkit.examples</span> <span class="kn">import</span> <span class="n">rosetta_data</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pepkit.dock.rosetta.refinement_dock</span><span class="w"> </span><span class="kn">import</span> <span class="n">refinement_multiple_dock</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pepkit.examples</span><span class="w"> </span><span class="kn">import</span> <span class="n">rosetta_data</span>
 
 <span class="c1"># Example: get test PDB directory and run docking</span>
 <span class="n">pdb_path</span> <span class="o">=</span> <span class="n">rosetta_data</span><span class="o">.</span><span class="n">get_rosetta_ex_path</span><span class="p">()</span>
@@ -135,9 +135,9 @@
 <li><p><cite>get_optimal_clx(df)</cite>: Retrieves the optimal complex (e.g., by lowest energy score) from a score DataFrame.</p></li>
 </ul>
 <p><strong>Example:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">pepkit.dock.rosetta.score</span> <span class="kn">import</span> <span class="n">read_and_convert</span><span class="p">,</span> <span class="n">extract_score</span><span class="p">,</span> <span class="n">get_optimal_clx</span>
-<span class="kn">from</span> <span class="nn">pepkit.examples</span> <span class="kn">import</span> <span class="n">rosetta_data</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pepkit.dock.rosetta.score</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_and_convert</span><span class="p">,</span> <span class="n">extract_score</span><span class="p">,</span> <span class="n">get_optimal_clx</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pepkit.examples</span><span class="w"> </span><span class="kn">import</span> <span class="n">rosetta_data</span>
 
 <span class="n">TEST_DIR</span> <span class="o">=</span> <span class="n">rosetta_data</span><span class="o">.</span><span class="n">get_refinement_path</span><span class="p">()</span>   <span class="c1"># Gets the example refinement directory</span>
 <span class="n">TEST_SCORE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">TEST_DIR</span><span class="p">,</span> <span class="s2">&quot;complex_1&quot;</span><span class="p">,</span> <span class="s2">&quot;docking_scores.sc&quot;</span><span class="p">)</span>
